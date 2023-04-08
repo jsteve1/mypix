@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import HomeNavbar from '../navbar/HomeNavbar';
 import HomeTextContainer from './home/HomeTextContainer';
-import HomePicsContainer from './home/HomePicsContainer';
+import HomeBackgroundDiv from './home/HomeBackground';
 import { BackgroundDiv } from './BackgroundDiv';
 
 export default function HomeContainer() {
@@ -10,8 +10,8 @@ export default function HomeContainer() {
             <HomeNavbar />
             <BackgroundDiv>
                 <HomeTextContainer />
-                <HomePicsContainer />
             </BackgroundDiv>
+            <HomeBackgroundDiv />
         </>
     )
 }
