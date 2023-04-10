@@ -79,17 +79,12 @@ export default function LoginForm() {
         }
 
     }
-
-    const forgotPW = () => {
-
-    }
-
     return (
         <LoginFormDiv>
             <LoginField>
               <EnvelopeAt style={{ marginRight: "10px" }} />Email
             </LoginField>
-            <LoginInput value={email} ref={emailRef} placeholder="Enter your Email" onChange={emailChange}/>
+            <LoginInput autoFocus={true} value={email} ref={emailRef} placeholder="Enter your Email" onChange={emailChange}/>
             <LoginField>
                <KeyFill style={{ marginRight: "10px" }} />   Password
             </LoginField>
@@ -97,7 +92,7 @@ export default function LoginForm() {
             <HomeButton onClick={login}>
                 Login <BoxArrowInRight />
             </HomeButton>
-            <ForgotPWDiv onClick={forgotPW} />
+            <ForgotPWDiv />
         </LoginFormDiv>
     )
 }

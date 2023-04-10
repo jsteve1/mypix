@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Masonry from 'react-masonry-css';
-
+import { useState } from "react";
 import adams from '../../../static/adams.jpg';
 import baker from '../../../static/baker.jpg';
 import hood from '../../../static/hood.jpg';
@@ -23,6 +23,8 @@ export const HomeBackgroundDiv = styled.div`
     top: 0;
     height: 100vh;
     overflow: hidden;
+    transition: opacity 1s ease;
+    ${props => props.imagesLoaded ? "opacity: 1;" : "opacity: 0;"}}
 `;
 
 const breakpointColumnsObj = {
@@ -30,29 +32,18 @@ const breakpointColumnsObj = {
     1100: 3,
     700: 2,
     500: 1
-  };
-  
-
-/*     .item-a {
-                    grid-row: 1 / 3;
-                }
-                
-                .item-b {
-                    grid-column: 1 / 4;
-                }
-                
-                .item-c {
-                    grid-row: 1 / 2;
-                }
-                
-                .item-d {
-                    grid-column: 1 / 3;
-                }
-
-*/
+};
 
 export default function HomeBackground() {
-    return (        
+    const [imagesLoaded, setImagesLoaded] = useState(true);
+    const [numberLoaded, setNumberLoaded] = useState(0);
+    const setLoaded = () => {
+        setNumberLoaded(numberLoaded + 1);
+        if (numberLoaded >= 10) {
+            setImagesLoaded(true);
+        }
+    }
+    return (
         <>
             <style type="text/css">
             {
@@ -68,13 +59,10 @@ export default function HomeBackground() {
                     padding-left: 10px; /* gutter size */
                     background-clip: padding-box;
                 }
-                
-                /* Style your items */
                 .my-masonry-grid_column > img { /* change div to reference your elements you put in <Masonry> */
                     background: grey;
                     margin-bottom: 10px;
                 }
-
                 img {
                     width: stretch;
                     max-width: 100%;
@@ -84,24 +72,24 @@ export default function HomeBackground() {
                 }
                 `
             }
-            </style>  
-            <HomeBackgroundDiv>
-            <Masonry
-                breakpointCols={breakpointColumnsObj}
-                className="my-masonry-grid"
-                columnClassName="my-masonry-grid_column">
-                    <img src={hood} />
-                    <img src={nature} />
-                    <img src={baker} />
-                    <img src={moon} />
-                    <img src={trees} />
-                    <img src={rainier} />     
-                    <img src={borealis} />
-                    <img src={waterfalls} />
-                    <img src={lake} />
-                    <img src={adams} />
-                    <img src={river} />
-            </Masonry>
+            </style>
+            <HomeBackgroundDiv imagesLoaded={imagesLoaded}>
+                <Masonry
+                    breakpointCols={breakpointColumnsObj}
+                    className="my-masonry-grid"
+                    columnClassName="my-masonry-grid_column">
+                        <img src={hood} alt="mthood" onLoad={setLoaded} />
+                        <img src={nature} alt="naturepic" onLoad={setLoaded} />
+                        <img src={baker} alt="mtbaker" onLoad={setLoaded} />
+                        <img src={moon} alt="themoon" onLoad={setLoaded} />
+                        <img src={trees} alt="trees" onLoad={setLoaded} />
+                        <img src={rainier} alt="mtrainier" onLoad={setLoaded} />
+                        <img src={borealis} alt="auroraborealis" onLoad={setLoaded} />
+                        <img src={waterfalls} alt="waterfalls" onLoad={setLoaded} />
+                        <img src={lake} alt="lakepic" onLoad={setLoaded} />
+                        <img src={adams} alt="mtadams" onLoad={setLoaded} />
+                        <img src={river} alt="riverpic" onLoad={setLoaded} />
+                </Masonry>
             </HomeBackgroundDiv>
         </>
     )

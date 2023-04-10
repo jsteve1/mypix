@@ -1,5 +1,6 @@
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
-
+import { setForgotPWModalOpened } from "../../app/uiSlice";
 export const ForgotPWDiv = styled.div`
     color: #aaaaaa; 
     font-size: 1rem;
@@ -15,8 +16,12 @@ export const ForgotPWDiv = styled.div`
 `; 
 
 export default function ForgotPW() {
+    const dispatch = useDispatch(); 
+    const forgotPW = () => {
+        dispatch(setForgotPWModalOpened(true))
+    }
     return (
-        <ForgotPWDiv>
+        <ForgotPWDiv onClick={forgotPW}>
             Forgot Password?
         </ForgotPWDiv>
     )

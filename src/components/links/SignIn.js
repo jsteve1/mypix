@@ -1,4 +1,5 @@
 import { BoxArrowInRight } from 'react-bootstrap-icons';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HomeButton = styled.div`
@@ -26,8 +27,9 @@ export const HomeButton = styled.div`
 `; 
 
 export default function SignIn() {
+    const navigate = useNavigate(); 
     return (
-        <HomeButton>
+        <HomeButton onClick={() => navigate('/login')}>
             Login <BoxArrowInRight />
         </HomeButton>
     )

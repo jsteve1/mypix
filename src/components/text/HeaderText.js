@@ -10,6 +10,7 @@ const HeaderTextDiv = styled.div`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     width: 500px;
+    max-width: 100vw;
     margin-bottom: 15px;
 `; 
 

@@ -1,4 +1,4 @@
-import CreateAccountContainer from '../components/containers/HomeContainer';
+import CreateAccountContainer from '../components/containers/CreateAccountContainer';
 
 export default function CreateAccount() {
     return (   

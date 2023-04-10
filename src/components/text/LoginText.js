@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import HeaderTextDiv from './HeaderText';
 
-const LoginDiv = styled.div`
+export const LoginDiv = styled.div`
     width: 100%;
     display: flex; 
     justify-content: center;
