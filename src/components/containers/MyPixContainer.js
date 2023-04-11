@@ -9,7 +9,9 @@ import { useEffect, useRef } from 'react';
 export const MyPixContainerDiv = styled.div`
     background: rgb(208,32,255);
     background: radial-gradient(circle, rgba(208,32,255,1) 0%, rgba(255,255,255,0.728538283062645) 0%, rgba(255,255,255,1) 0%, rgba(208,32,255,0.3113620448179272) 100%);
-    height: 100vh;
+    --fitheight: fit-content;
+    min-height: 100vh;
+    height: max(var(--fitheight), 100vh);
     width: 100vw;
     padding-top: 80px;
 `;

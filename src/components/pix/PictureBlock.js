@@ -1,6 +1,7 @@
 import { Resizable } from 'react-resizable';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import useWindowSize from '../../app/utils/useWindowSize';
 const PictureDiv = styled.div`
     background-image: url(${props => props.img});
     background-size: cover;
@@ -11,14 +12,26 @@ const PictureDiv = styled.div`
 `; 
 
 export default function PictureBlock({ img }) {
+    const dimensions = useWindowSize(); 
     const [width, setWidth] = useState(500);
     const [height, setHeight] = useState(500);
+
     const onResize = (event, { node, size, handle}) => {
         setWidth(size.width);
         setHeight(size.height);
     }
+
+    useEffect(() => {
+        const img = new Image(); 
+        img.src = img;
+        img.onload = () => {
+            setWidth(img.width);
+            setHeight(img.height);
+        }
+    }, [img])
+
     return (
-        <Resizable height={height} width={width} onResize={onResize}>
+        <Resizable minConstraints={[50, 50]} maxConstraints={[dimensions.width, dimensions.height]} lockAspectRatio={true} height={height} width={width} onResize={onResize}>
             <PictureDiv className="box" width={width} height={height} img={img} />
         </Resizable>
     )

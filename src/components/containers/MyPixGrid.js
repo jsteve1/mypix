@@ -15,8 +15,8 @@ export default function MyPixGrid() {
     }
 
     return (
-        <>
+        <div className="d-flex flex-wrap">
             { getPics() }
-        </>
+        </div>
     )
 }
