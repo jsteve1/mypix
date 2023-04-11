@@ -2,6 +2,9 @@ import { Resizable } from 'react-resizable';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useWindowSize from '../../app/utils/useWindowSize';
+import Draggable from 'react-draggable';
+
+
 const PictureDiv = styled.div`
     background-image: url(${props => props.img});
     background-size: cover;
@@ -31,8 +34,15 @@ export default function PictureBlock({ img }) {
     }, [img])
 
     return (
-        <Resizable minConstraints={[50, 50]} maxConstraints={[dimensions.width, dimensions.height]} lockAspectRatio={true} height={height} width={width} onResize={onResize}>
-            <PictureDiv className="box" width={width} height={height} img={img} />
-        </Resizable>
+        <Draggable
+            handle=".handle"
+            defaultPosition={{x: 0, y: 0}}
+            position={null}
+            grid={[25, 25]}
+            scale={1}>
+            <Resizable minConstraints={[50, 50]} maxConstraints={[dimensions.width, dimensions.height]} lockAspectRatio={true} height={height} width={width} onResize={onResize}>
+                <PictureDiv className="box handle" width={width} height={height} img={img} />
+            </Resizable>
+        </Draggable>
     )
 }
