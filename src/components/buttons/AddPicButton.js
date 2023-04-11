@@ -3,8 +3,10 @@ import { HomeButton } from "../links/SignIn";
 import { useRef, useState } from "react";
 import styled from "styled-components";
 import DragAndDropText from "../text/DragAndDropText"; 
+import { isMobile } from "../../app/utils/isMobile";
+import useWindowSize from "../../app/utils/useWindowSize";
 
-const NewPhotoButton = styled(HomeButton)`   
+  const NewPhotoButton = styled(HomeButton)`   
   font-size: 1.2rem;
   width: 200px;
   margin-bottom: 50px;
@@ -16,6 +18,7 @@ const HiddenPhotoInput = styled.input`
 `; 
 
 export default function AddPicButton() {
+    const { width, height } = useWindowSize();
     const inputRef = useRef(null); 
     const [selectedPhoto, setSelectedPhoto] = useState(null); 
     const [submitting, setSubmitting] = useState(false);
@@ -41,13 +44,19 @@ export default function AddPicButton() {
 
     }
 
+    useEffect(() => {
+
+    }, []);
+
     return (
       <div className="d-flex justify-content-center flex-column align-items-center">
         <NewPhotoButton onClick={handleUpload}>
           <Plus width={"35px"} height={"35px"} style={{ marginRight: "2px" }} />Click to Upload 
           <HiddenPhotoInput ref={inputRef} name="file" type="file" onClick={handlePhoto} id="new-photo-upload" accept="image/*" />
         </NewPhotoButton>
-        <DragAndDropText />
+        {
+          isMobile.any() ? <></> : <DragAndDropText />
+        }
       </div>
     )
 }
