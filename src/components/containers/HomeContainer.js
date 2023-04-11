@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import HomeNavbar from '../navbar/HomeNavbar';
 import HomeTextContainer from './home/HomeTextContainer';
 import HomeBackgroundDiv from './home/HomeBackground';
