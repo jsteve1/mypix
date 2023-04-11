@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 // Hook
 //https://usehooks.com/useWindowSize/
 export default function useWindowSize() {

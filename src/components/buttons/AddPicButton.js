@@ -1,12 +1,12 @@
 import { Plus } from "react-bootstrap-icons";
 import { HomeButton } from "../links/SignIn";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import DragAndDropText from "../text/DragAndDropText"; 
 import { isMobile } from "../../app/utils/isMobile";
 import useWindowSize from "../../app/utils/useWindowSize";
 
-  const NewPhotoButton = styled(HomeButton)`   
+const NewPhotoButton = styled(HomeButton)`   
   font-size: 1.2rem;
   width: 200px;
   margin-bottom: 50px;

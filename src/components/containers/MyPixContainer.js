@@ -1,5 +1,5 @@
-import { selectPics } from '../../app/picSlice';
-import { useSelector } from 'react-redux';
+import { addPic, selectPics } from '../../app/picSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components'; 
 import HomeNavbar from '../navbar/HomeNavbar';
 import MyPixGrid from './MyPixGrid';
@@ -17,7 +17,7 @@ export const MyPixContainerDiv = styled.div`
 export default function MyPixContainer() {
     const pics = useSelector(selectPics);
     const contRef = useRef(null); 
-
+    const dispatch = useDispatch();
     const handleDragOver = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -50,6 +50,8 @@ export default function MyPixContainer() {
 
     const onUpload = (files) => {
         console.log(files[0]);
+        const url = URL.createObjectURL(files[0]);
+        dispatch(addPic(url)); 
     };
 
     useEffect(() => {
