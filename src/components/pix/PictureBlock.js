@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useWindowSize from '../../app/utils/useWindowSize';
 import Draggable from 'react-draggable';
-
+import { useSelector } from 'react-redux';
+import { selectMovingPix, selectResizingPix } from '../../app/uiSlice';
 
 const PictureDiv = styled.div`
     background-image: url(${props => props.img});
@@ -15,6 +16,8 @@ const PictureDiv = styled.div`
 `; 
 
 export default function PictureBlock({ img }) {
+    const resizingPics = useSelector(selectResizingPix);
+    const movingPix = useSelector(selectMovingPix);
     const dimensions = useWindowSize(); 
     const [width, setWidth] = useState(500);
     const [height, setHeight] = useState(500);
@@ -31,18 +34,32 @@ export default function PictureBlock({ img }) {
             setWidth(img.width);
             setHeight(img.height);
         }
-    }, [img])
+    }, [img]); 
 
     return (
-        <Draggable
-            handle=".handle"
-            defaultPosition={{x: 0, y: 0}}
-            position={null}
-            grid={[25, 25]}
-            scale={1}>
-            <Resizable minConstraints={[50, 50]} maxConstraints={[dimensions.width, dimensions.height]} lockAspectRatio={true} height={height} width={width} onResize={onResize}>
-                <PictureDiv className="box handle" width={width} height={height} img={img} />
-            </Resizable>
-        </Draggable>
+        <>
+        {
+            resizingPics ?  <Resizable minConstraints={[50, 50]} maxConstraints={[dimensions.width, dimensions.height]} lockAspectRatio={true} height={height} width={width} onResize={onResize}>
+                                <PictureDiv className="box handle" width={width} height={height} img={img} />
+                            </Resizable> 
+                            : 
+                            <>
+                            {
+                                movingPix   ?
+                                            <Draggable
+                                                handle=".handle"
+                                                defaultPosition={{x: 0, y: 0}}
+                                                position={null}
+                                                grid={[25, 25]}
+                                                scale={1}>
+                                                <PictureDiv className="box handle" width={width} height={height} img={img} />
+                                            </Draggable> 
+                                            : 
+                                            <PictureDiv className="box handle" width={width} height={height} img={img} />
+                            }
+                            </>
+                                    
+        }
+        </>
     )
 }
